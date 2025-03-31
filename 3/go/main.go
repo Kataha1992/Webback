@@ -155,7 +155,7 @@ func postHandler(w http.ResponseWriter, r *http.Request) {
 		"contains": strings.Contains,
 	}
 
-	tmpl, err := template.New("form.html").Funcs(funcMap).ParseFiles("form.html")
+	tmpl, err := template.New("../form.html").Funcs(funcMap).ParseFiles("../form.html")
 
 	if err != nil {
 		fmt.Fprintf(w, "Ошибка при работе с шаблоном: %v", err)
