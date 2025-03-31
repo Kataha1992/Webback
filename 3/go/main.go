@@ -122,7 +122,7 @@ func addToDataBase(user FormUser, w http.ResponseWriter) {
 			return
 		}
 
-		insert, err := db.Query(fmt.Sprintf("INSERT INTO Abilities (ApplicationID, ProgLangID) VALUES ('%d', '%d')", id, plId))
+		insert, err := db.Query(fmt.Sprintf("INSERT INTO PL_Application (ApplicationID, ProgLangID) VALUES ('%d', '%d')", id, plId))
 
 		if err != nil {
 			fmt.Fprintf(w, "Ошибка добавления: %v", err)
