@@ -54,18 +54,15 @@
     {{ range . }}
         {{ if contains . "некорректно" }}
         <div class="notification error" title="{{ . }}">
-            <img src="img/error.png" alt="">
             <span>{{ . }}</span>
         </div>
         {{ else }}
         <div class="notification warning" title="{{ . }}">
-            <img src="img/warning.png" alt="">
             <span>{{ . }}</span>
         </div>
         {{ end }}
     {{ else }}
         <div class="notification success" title="{{ . }}">
-            <img src="img/success.png" alt="">
             <span>Данные отправлены успешно</span>
         </div>
     {{ end }}
