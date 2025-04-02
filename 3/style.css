@@ -1,220 +1,225 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 body {
-    background-color: #525252;
+background-color: #525252;
 }
 
-* {
-    color: #fff;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif, sans-serif;
-}
 
 code {
-    font-family: monospace;
-    background-color: #431010;
-    color: #00ff04;
+font-family: monospace;
+background-color: #431010;
+color: #00ff04;
 }
 
 p {
-    font-size: 16px;
-    font-weight: 500;
-    margin-bottom: 0;
+font-size: 16px;
+font-weight: 500;
+margin-bottom: 0;
 }
 
 h1, h2 {
-    text-align: center;
+text-align: center;
 }
 
 .container {
-    max-width: 1000px;
-    margin: 0 auto;
+max-width: 1000px;
+margin: 0 auto;
 }
 
 .point {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+display: flex;
+flex-direction: column;
+gap: 10px;
 }
 
 .point-image {
-    align-self: center;
-    max-width: 100%;
+align-self: center;
+max-width: 100%;
 }
 
-/* Form */
+/* Form - New Styles */
 
 .form {
-    padding: 25px 75px;
-    margin: 0 200px;
-    background-color: #2d2d2d;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+padding: 40px;
+margin: 50px auto;
+background-color: #1a1a1a;
+border-radius: 15px;
+box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+max-width: 500px;
 }
 
-.form h2 {
-    margin-top: 0;
-    margin-bottom: 20px;
-    text-align: center;
-    font-size: 24px;
-    color: #fff;
+.form-title {
+color: #ffffff;
+font-size: 28px;
+margin-bottom: 30px;
+text-transform: uppercase;
+letter-spacing: 1px;
 }
 
 .form-input {
-    box-sizing: border-box;
-    width: 100%;
-    padding: 10px;
-    margin: 8px 0;
-    border: 1px solid #444;
-    border-radius: 5px;
-    background-color: #3d3d3d;
-    color: #fff;
-    font-size: 16px;
+box-sizing: border-box;
+width: 100%;
+padding: 12px 15px;
+margin: 8px 0 20px;
+border: 2px solid #333;
+border-radius: 8px;
+background-color: #2a2a2a;
+color: #fff;
+font-size: 16px;
+transition: all 0.3s ease;
 }
 
-.form-input:focus {
-    border-color: #007bff;
-    outline: none;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+.text-input {
+background-color: #2a2a2a;
+border-color: #444;
 }
 
-.form-input::placeholder {
-    color: #aaa;
+.text-input:focus {
+border-color: #ff6b00;
+outline: none;
+box-shadow: 0 0 0 2px rgba(255, 107, 0, 0.3);
 }
 
-label {
-    display: inline;
-    margin-bottom: 10px;
-    font-size: 16px;
-    color: #fff;
+.text-input::placeholder {
+color: #777;
 }
 
-textarea.form-input {
-    min-height: 80px;
-    height: 100px;
-    max-height: 120px;
-    resize: vertical;
+.input-label,
+.radio-label,
+.select-label,
+.textarea-label {
+display: block;
+margin-bottom: 8px;
+font-size: 16px;
+color: #ccc;
+font-weight: 500;
 }
 
-select.form-input {
-    height: 100px;
+.radio-label {
+display: inline-block;
+margin-right: 15px;
 }
 
-.form-submit {
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    border: none;
-    border-radius: 5px;
-    color: #fff;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+.radio-option {
+display: inline-block;
+margin-right: 15px;
+color: #ccc;
 }
 
-.form-submit:hover {
-    background-color: #0056b3;
+.radio-option input[type="radio"] {
+margin-right: 5px;
 }
 
-input[type="radio"] {
-    margin-bottom: 8px;
+.date-input {
+background-color: #2a2a2a;
+border-color: #444;
 }
 
-input[type="checkbox"] {
-    margin-bottom: 16px;
+.select-input {
+height: auto;
+min-height: 100px;
+background-color: #2a2a2a;
+border-color: #444;
 }
 
-select[name="prog-lang"] {
-    height: auto;
-    padding: 10px;
+.textarea-input {
+min-height: 100px;
+background-color: #2a2a2a;
+border-color: #444;
 }
 
-.form label {
-    font-weight: 500;
+.checkbox-option {
+display: block;
+margin: 20px 0;
+color: #ccc;
 }
 
-input[type="date"]::-webkit-calendar-picker-indicator {
-    filter: invert(1);
+.checkbox-option input[type="checkbox"] {
+margin-right: 8px;
 }
 
-::-webkit-scrollbar {
-    width: 12px;
+.submit-btn {
+background-color: #ff0000;
+color: white;
+border-radius: 8px;
+font-weight: bold;
+text-transform: uppercase;
+letter-spacing: 1px;
+border: none;
+padding: 15px;
+margin-top: 10px;
+transition: background-color 0.3s ease;
 }
 
-::-webkit-scrollbar-track {
-    background: #2d2d2d; border-radius: 10px;
+.submit-btn:hover {
+background-color: #e05d00;
 }
 
-::-webkit-scrollbar-thumb {
-    background: #555;
-    border-radius: 10px;
-    border: 3px solid #2d2d2d;
+input.form-submit.submit-btn {
+    font-family: initial;
 }
 
-::-webkit-scrollbar-thumb:hover {
-    background: #777;
-}
-
-/* Status Bar */
+/* Status Bar (keep original) */
 
 .status-bar {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 14px;
-    
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
+position: absolute;
+top: 10px;
+right: 10px;
+font-size: 14px;
+
+display: flex;
+flex-direction: column;
+align-items: flex-end;
 }
 
 .hidden {
-    display: none;
+display: none;
 }
 
 .notification {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+display: flex;
+align-items: center;
+gap: 10px;
 
-    margin-bottom: 10px;
-    padding: 5px 15px;
-    border: 1px solid #2d2d2d;
-    border-radius: 5px;
+margin-bottom: 10px;
+padding: 5px 15px;
+border: 1px solid #2d2d2d;
+border-radius: 5px;
 
-    max-width: 320px;
+max-width: 320px;
 }
 
 .notification > img {
-    width: 18px;
-    height: 18px;
+width: 18px;
+height: 18px;
 }
 
 .notification > span {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+white-space: nowrap;
 }
 
 .warning {
-    background-color: #66330080;
+background-color: #66330080;
 }
 
 .error {
-    background-color: #66000080;
+background-color: #66000080;
 }
 
 .success {
-    background-color: #00442280;
+background-color: #00442280;
 }
 
 .show {
-    opacity: 1;
-    position: relative;
-    top: 0;
+opacity: 1;
+position: relative;
+top: 0;
 }
 
 .hide {
-    position: relative;
-    top: 50px;
-    opacity: 0;
+position: relative;
+top: 50px;
+opacity: 0;
 }
