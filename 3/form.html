@@ -1,32 +1,30 @@
 <!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Задание 3</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <main>
-        <div class="container">
-            <div class="form">
-                <h2>Заполните форму</h2>
-                <form action="main.cgi" method="post">
-                    <input type="text" id="full_name" name="full_name" placeholder="ФИО" class="form-input"><br>
-
-                    <input type="tel" id="phone" name="phone" placeholder="Телефон" class="form-input"><br>
-
-                    <input type="email" id="email" name="email" placeholder="Email" class="form-input"><br>
-
-                    <label for="birthdate">Дата рождения:</label>
-                    <input type="date" id="birthdate" name="birthdate" class="form-input"><br>
-
-                    <label>Пол:</label>
-                    <label><input type="radio" name="gender" value="male">М</label>
-                    <label><input type="radio" name="gender" value="female">Ж</label><br>
-
-                    <label for="prog_lang">Любимый язык программирования:</label>
-                    <select multiple id="prog_lang" name="prog_lang[]" class="form-input">
+<html lang="ru"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Задание 3</title> <link rel="stylesheet" href="style.css"> 
+</head> 
+<body> 
+    <main> 
+        <div class="container"> 
+            <div class="form"> 
+                <h2 class="form-title">Заполните форму</h2> 
+                <form action="main.cgi" method="post"> 
+                    <input type="text" id="full_name" name="full_name" placeholder="ФИО" class="form-input text-input"><br>
+                    <input type="tel" id="phone" name="phone" placeholder="Телефон" class="form-input text-input"><br>
+    
+                    <input type="email" id="email" name="email" placeholder="Email" class="form-input text-input"><br>
+    
+                    <label for="birthdate" class="input-label">Дата рождения:</label>
+                    <input type="date" id="birthdate" name="birthdate" class="form-input date-input"><br>
+    
+                    <label class="radio-label">Пол:</label>
+                    <label class="radio-option"><input type="radio" name="gender" value="male">М</label>
+                    <label class="radio-option"><input type="radio" name="gender" value="female">Ж</label><br>
+    
+                    <label for="prog_lang" class="select-label">Любимый язык программирования:</label>
+                    <select multiple id="prog_lang" name="prog_lang[]" class="form-input select-input">
                         <option value="JavaScript">JavaScript</option>
                         <option value="PHP">PHP</option>
                         <option value="Python">Python</option>
@@ -40,18 +38,18 @@
                         <option value="Scala">Scala</option>
                         <option value="Go">Go</option>
                     </select><br>
-
-                    <label for="bio">Биография:</label>
-                    <textarea id="bio" name="bio" placeholder="Введите свою биографию..." class="form-input"></textarea><br>
-
-                    <label><input type="checkbox" name="agree" required>С контрактом ознакомлен(-а)</label><br>
-
-                    <input type="submit" value="Отправить" class="form-submit">
+    
+                    <label for="bio" class="textarea-label">Биография:</label>
+                    <textarea id="bio" name="bio" placeholder="Введите свою биографию..." class="form-input textarea-input"></textarea><br>
+    
+                    <label class="checkbox-option"><input type="checkbox" name="agree" required>С контрактом ознакомлен(-а)</label><br>
+    
+                    <input type="submit" value="Отправить" class="form-submit submit-btn">
                 </form>
             </div>
         </div>
     </main>
-
+    
     <div class="status-bar hidden">
     {{ range . }}
         {{ if contains . "некорректно" }}
@@ -72,7 +70,7 @@
         </div>
     {{ end }}
     </div>
-
+    
     <script src="script.js"></script>
 </body>
 </html>
