@@ -1,0 +1,50 @@
+<!-- Добавьте в начало формы блок для отображения ошибок -->
+{{if .HasErrors}}
+<div class="error-summary">
+    <p>Пожалуйста, исправьте следующие ошибки:</p>
+    <ul>
+        {{range $field, $msg := .User.Errors}}
+        <li>{{$msg}}</li>
+        {{end}}
+    </ul>
+</div>
+{{end}}
+
+<!-- Модифицируйте поля формы (пример для ФИО) -->
+<div class="form-group {{if .User.Errors.full_name}}error{{end}}">
+    <label for="full_name">ФИО:</label>
+    <input type="text" id="full_name" name="full_name" 
+           value="{{.User.FullName}}" class="form-input text-input">
+    {{if .User.Errors.full_name}}
+    <span class="error-message">{{.User.Errors.full_name}}</span>
+    {{end}}
+</div>
+
+<!-- Для radio-кнопок (пример для пола) -->
+<div class="form-group {{if .User.Errors.gender}}error{{end}}">
+    <label class="radio-label">Пол:</label>
+    <label class="radio-option">
+        <input type="radio" name="gender" value="male" 
+               {{if eq .User.Gender "male"}}checked{{end}}>М
+    </label>
+    <label class="radio-option">
+        <input type="radio" name="gender" value="female" 
+               {{if eq .User.Gender "female"}}checked{{end}}>Ж
+    </label>
+    {{if .User.Errors.gender}}
+    <span class="error-message">{{.User.Errors.gender}}</span>
+    {{end}}
+</div>
+
+<!-- Для select multiple (языки программирования) -->
+<div class="form-group {{if .User.Errors.prog_lang}}error{{end}}">
+    <label for="prog_lang" class="select-label">Любимый язык программирования:</label>
+    <select multiple id="prog_lang" name="prog_lang[]" class="form-input select-input">
+        {{$selectedLangs := .User.ProgLang}}
+        <option value="JavaScript" {{if contains $selectedLangs "JavaScript"}}selected{{end}}>JavaScript</option>
+        <!-- остальные option аналогично -->
+    </select>
+    {{if .User.Errors.prog_lang}}
+    <span class="error-message">{{.User.Errors.prog_lang}}</span>
+    {{end}}
+</div>
