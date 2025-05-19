@@ -245,7 +245,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		// } else {
 		// 	fmt.Fprint(w, er)
 		// }
-		http.Redirect(w, r, "submit.cgi", http.StatusSeeOther)
+		http.Redirect(w, r, "main.cgi", http.StatusSeeOther)
 		return
 	}
 
