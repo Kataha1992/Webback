@@ -147,7 +147,7 @@ func setFormCookies(w http.ResponseWriter, user FormUser) {
 func setErrorCookies(w http.ResponseWriter, errors map[string]string) {
     // Set error cookies (session only)
     for field, msg := range errors {
-        http.SetCookie(w, &http.Cookie{Name: "error_" + field, Value: msg})
+        http.SetCookie(w, &http.Cookie{Name: "error_" + field, Value: msg, MaxAge: -1})
     }
 }
 
