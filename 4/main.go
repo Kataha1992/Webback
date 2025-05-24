@@ -133,22 +133,22 @@ func addToDataBase(user FormUser, w http.ResponseWriter) error {
 }
 
 func setFormCookies(w http.ResponseWriter, user FormUser) {
-	// Set cookies for valid form data (1 year expiration)
-	expiration := time.Now().Add(365 * 24 * time.Hour)
-	http.SetCookie(w, &http.Cookie{Name: "full_name", Value: user.FullName, Expires: expiration})
-	http.SetCookie(w, &http.Cookie{Name: "phone", Value: user.Phone, Expires: expiration})
-	http.SetCookie(w, &http.Cookie{Name: "email", Value: user.Email, Expires: expiration})
-	http.SetCookie(w, &http.Cookie{Name: "birthdate", Value: user.Birthdate, Expires: expiration})
-	http.SetCookie(w, &http.Cookie{Name: "gender", Value: user.Gender, Expires: expiration})
-	http.SetCookie(w, &http.Cookie{Name: "prog_lang", Value: strings.Join(user.ProgLang, ","), Expires: expiration})
-	http.SetCookie(w, &http.Cookie{Name: "bio", Value: user.Bio, Expires: expiration})
+    // Set cookies for valid form data (1 year expiration)
+    expiration := time.Now().Add(365 * 24 * time.Hour)
+    http.SetCookie(w, &http.Cookie{Name: "full_name", Value: user.FullName, Expires: expiration})
+    http.SetCookie(w, &http.Cookie{Name: "phone", Value: user.Phone, Expires: expiration})
+    http.SetCookie(w, &http.Cookie{Name: "email", Value: user.Email, Expires: expiration})
+    http.SetCookie(w, &http.Cookie{Name: "birthdate", Value: user.Birthdate, Expires: expiration})
+    http.SetCookie(w, &http.Cookie{Name: "gender", Value: user.Gender, Expires: expiration})
+    http.SetCookie(w, &http.Cookie{Name: "prog_lang", Value: strings.Join(user.ProgLang, ","), Expires: expiration})
+    http.SetCookie(w, &http.Cookie{Name: "bio", Value: user.Bio, Expires: expiration})
 }
 
 func setErrorCookies(w http.ResponseWriter, errors map[string]string) {
-	// Set error cookies (session only)
-	for field, msg := range errors {
-		http.SetCookie(w, &http.Cookie{Name: "error_" + field, Value: msg})
-	}
+    // Set error cookies (session only)
+    for field, msg := range errors {
+        http.SetCookie(w, &http.Cookie{Name: "error_" + field, Value: msg})
+    }
 }
 
 func clearErrorCookies(w http.ResponseWriter) {
