@@ -47,18 +47,18 @@
 
             <label>Любимый язык программирования:</label>
             <select multiple id="langs" name="langs[]" size="6">
-                <option value="pascal" {{ if .Contains "pascal" }} selected {{ end }}>Pascal</option>
-                <option value="c" {{ if .Contains "c" }} selected {{ end }}>C</option>
-                <option value="cpp" {{ if .Contains "cpp" }} selected {{ end }}>C++</option>
-                <option value="javascript" {{ if .Contains "javascript" }} selected {{ end }}>JavaScript</option>
-                <option value="php" {{ if .Contains "php" }} selected {{ end }}>PHP</option>
-                <option value="python" {{ if .Contains "python" }} selected {{ end }}>Python</option>
-                <option value="java" {{ if .Contains "java" }} selected {{ end }}>Java</option>
-                <option value="haskell" {{ if .Contains "haskell" }} selected {{ end }}>Haskell</option>
-                <option value="clojure" {{ if .Contains "clojure" }} selected {{ end }}>Clojure</option>
-                <option value="prolog" {{ if .Contains "prolog" }} selected {{ end }}>Prolog</option>
-                <option value="scala" {{ if .Contains "scala" }} selected {{ end }}>Scala</option>
-                <option value="go" {{ if .Contains "go" }} selected {{ end }}>Go</option>
+                <option value="Pascal" {{ if .Contains "Pascal" }} selected {{ end }}>Pascal</option>
+                <option value="C" {{ if .Contains "C" }} selected {{ end }}>C</option>
+                <option value="C++" {{ if .Contains "C++" }} selected {{ end }}>C++</option>
+                <option value="Javascript" {{ if .Contains "Javascript" }} selected {{ end }}>JavaScript</option>
+                <option value="PHP" {{ if .Contains "PHP" }} selected {{ end }}>PHP</option>
+                <option value="Python" {{ if .Contains "Python" }} selected {{ end }}>Python</option>
+                <option value="Java" {{ if .Contains "Java" }} selected {{ end }}>Java</option>
+                <option value="Haskell" {{ if .Contains "Haskell" }} selected {{ end }}>Haskell</option>
+                <option value="Clojure" {{ if .Contains "Clojure" }} selected {{ end }}>Clojure</option>
+                <option value="Prolog" {{ if .Contains "Prolog" }} selected {{ end }}>Prolog</option>
+                <option value="Scala" {{ if .Contains "Scala" }} selected {{ end }}>Scala</option>
+                <option value="Go" {{ if .Contains "Go" }} selected {{ end }}>Go</option>
             </select>
             <p class="warning warning_red">
             {{ $langsErr := .Errors.Langs }}
