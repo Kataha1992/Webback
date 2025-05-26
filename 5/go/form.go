@@ -155,24 +155,14 @@ func insertPL(langs []string, id string) error {
 	for _, pl := range langs {
 		plid := ""
 
-		sel, err := db.Query(`
-			SELECT ProgLangID
-			FROM ProgLang
+		err := db.QueryRow(`
+			SELECT ProgLangID 
+			FROM ProgLang 
 			WHERE Name = ?;
-		`, pl)
+		`, pl).Scan(&plid)
 
 		if err != nil {
 			return err
-		}
-
-		defer sel.Close()
-
-		for sel.Next() {
-			err := sel.Scan(&plid)
-
-			if err != nil {
-				return err
-			}
 		}
 
 		_, err = db.Exec(`
