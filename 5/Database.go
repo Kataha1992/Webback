@@ -4,13 +4,14 @@ import (
 	"crypto/rand"
 	"database/sql"
 	"encoding/base64"
+	"fmt"
 	"log"
 
 	_ "github.com/go-sql-driver/mysql"
 	"golang.org/x/crypto/bcrypt"
 )
 
-type Application struct {
+type FormData struct {
 	ID        int
 	FullName  string
 	Phone     string
@@ -25,14 +26,14 @@ var db *sql.DB
 
 func initDB() error {
 	var err error
-	db, err = sql.Open("mysql", "u68874:3632703@/u68874")
+	db, err = sql.Open("mysql", "u68874:3632703@tcp(localhost:3306)/u68874?parseTime=true")
 	if err != nil {
-		return err
+		return fmt.Errorf("failed to connect to database: %v", err)
 	}
 
 	err = db.Ping()
 	if err != nil {
-		return err
+		return fmt.Errorf("failed to ping database: %v", err)
 	}
 
 	return nil
@@ -47,7 +48,7 @@ func generateRandomString(length int) string {
 	return base64.URLEncoding.EncodeToString(b)[:length]
 }
 
-func saveApplication(app *Application, login, password string) error {
+func saveApplication(app *FormData, login, password string) error {
 	tx, err := db.Begin()
 	if err != nil {
 		return err
@@ -64,7 +65,7 @@ func saveApplication(app *Application, login, password string) error {
 		return err
 	}
 
-	// Сначала сохраняем заявку
+	// Сохраняем заявку
 	res, err := tx.Exec(`
 		INSERT INTO Application 
 		(FullName, PhoneNumber, Email, Birthdate, Gender, Biography) 
@@ -79,7 +80,7 @@ func saveApplication(app *Application, login, password string) error {
 		return err
 	}
 
-	// Затем сохраняем пользователя с ID = appID
+	// Сохраняем пользователя
 	_, err = tx.Exec("INSERT INTO User (Login, Password) VALUES (?, ?)", appID, string(hash))
 	if err != nil {
 		return err
@@ -102,8 +103,8 @@ func saveApplication(app *Application, login, password string) error {
 	return tx.Commit()
 }
 
-func getApplicationByLogin(login int) (*Application, error) {
-	var app Application
+func getFormDataByLogin(login int) (*FormData, error) {
+	var app FormData
 
 	err := db.QueryRow(`
 		SELECT ApplicationID, FullName, PhoneNumber, Email, 
@@ -137,7 +138,7 @@ func getApplicationByLogin(login int) (*Application, error) {
 	return &app, nil
 }
 
-func updateApplication(app *Application) error {
+func updateApplication(app *FormData) error {
 	tx, err := db.Begin()
 	if err != nil {
 		return err
@@ -148,7 +149,6 @@ func updateApplication(app *Application) error {
 		}
 	}()
 
-	// Обновляем основную информацию
 	_, err = tx.Exec(`
 		UPDATE Application 
 		SET FullName = ?, PhoneNumber = ?, Email = ?, 
@@ -160,13 +160,11 @@ func updateApplication(app *Application) error {
 		return err
 	}
 
-	// Удаляем старые связи с языками
 	_, err = tx.Exec("DELETE FROM PL_Application WHERE ApplicationID = ?", app.ID)
 	if err != nil {
 		return err
 	}
 
-	// Добавляем новые связи с языками
 	for _, lang := range app.Languages {
 		var langID int
 		err = tx.QueryRow("SELECT ProglangID FROM Proglang WHERE Name = ?", lang).Scan(&langID)

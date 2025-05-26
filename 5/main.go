@@ -21,6 +21,7 @@ func main() {
 	http.HandleFunc("/update", updateHandler)
 
 	// Запуск CGI-сервера
+	log.Println("Starting CGI server...")
 	err = cgi.Serve(http.HandlerFunc(handler))
 	if err != nil {
 		log.Fatal("CGI error:", err)
@@ -28,7 +29,6 @@ func main() {
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
-	// Маршрутизация запросов
 	switch r.URL.Path {
 	case "/":
 		formHandler(w, r)

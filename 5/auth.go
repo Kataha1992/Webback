@@ -11,7 +11,7 @@ import (
 var jwtKey = []byte("your-secret-key-12345")
 
 type Claims struct {
-	Login string `json:"login"` // Оставляем string для JWT
+	Login string `json:"login"`
 	jwt.RegisteredClaims
 }
 
@@ -41,7 +41,14 @@ func validateJWT(r *http.Request) (*Claims, error) {
 		return jwtKey, nil
 	})
 
-	if err != nil || !token.Valid {
+	if err != nil {
+		if err == jwt.ErrSignatureInvalid {
+			return nil, errors.New("invalid token signature")
+		}
+		return nil, err
+	}
+
+	if !token.Valid {
 		return nil, errors.New("invalid token")
 	}
 
