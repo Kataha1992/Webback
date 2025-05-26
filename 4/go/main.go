@@ -133,13 +133,13 @@ func validate(appl Application) Response {
 }
 
 func insertData(appl Application) {
-	db, _ := sql.Open("mysql", "u68867:6788851@/u68867")
+	db, _ := sql.Open("mysql", "u68874:3632703@/u68874")
 	defer db.Close()
 
-	insert, _ := db.Query(fmt.Sprintf("INSERT INTO APPLICATION(NAME, PHONE, EMAIL, BIRTHDATE, GENDER, BIO) VALUES ('%s', '%s', '%s', '%s', '%s', '%s')", appl.Fio, appl.Phone, appl.Email, appl.Birthdate, appl.Gender, appl.Bio))
+	insert, _ := db.Query(fmt.Sprintf("INSERT INTO Application(FullName, PhoneNumber, Email, Birthdate, Gender, Biography) VALUES ('%s', '%s', '%s', '%s', '%s', '%s')", appl.Fio, appl.Phone, appl.Email, appl.Birthdate, appl.Gender, appl.Bio))
 	defer insert.Close()
 
-	sel, _ := db.Query("SELECT ID FROM APPLICATION ORDER BY ID DESC LIMIT 1")
+	sel, _ := db.Query("SELECT ApplicationID FROM Application ORDER BY ApplicationID DESC LIMIT 1")
 	defer sel.Close()
 
 	var id int
@@ -148,7 +148,7 @@ func insertData(appl Application) {
 	}
 
 	for _, name := range appl.Langs {
-		sel, _ := db.Query(fmt.Sprintf("SELECT ID FROM PL WHERE NAME='%s'", name))
+		sel, _ := db.Query(fmt.Sprintf("SELECT ProgLangID FROM ProgLang WHERE Name='%s'", name))
 		defer sel.Close()
 
 		var plId int
@@ -156,7 +156,7 @@ func insertData(appl Application) {
 			sel.Scan(&plId)
 		}
 
-		insert, _ := db.Query(fmt.Sprintf("INSERT INTO FAVORITE_PL (APPLICATION_ID, PL_ID) VALUES ('%d', '%d')", id, plId))
+		insert, _ := db.Query(fmt.Sprintf("INSERT INTO PL_Application (ApplicationID, ProgLangID) VALUES ('%d', '%d')", id, plId))
 		defer insert.Close()
 	}
 }
