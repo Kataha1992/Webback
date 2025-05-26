@@ -26,7 +26,7 @@ var db *sql.DB
 
 func initDB() error {
 	var err error
-	db, err = sql.Open("mysql", "u68874:3632703@tcp(localhost:3306)/u68874?parseTime=true")
+	db, err = sql.Open("mysql", "u68874:3632703@/u68874")
 	if err != nil {
 		return fmt.Errorf("failed to connect to database: %v", err)
 	}
