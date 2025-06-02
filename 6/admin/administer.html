@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задание 6</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="admin/style.css">
+</head>
+<body>
+    <div class="form-container" style="width: auto; max-width: 1200px;">
+        <h2>Администрирование</h2>
+
+        <div class="user-administration">
+            <table>
+                <thead>
+                    <th>ID</th>
+                    <th>ФИО</th>
+                    <th>Телефон</th>
+                    <th>Почта</th>
+                    <th>Дата рождения</th>
+                    <th>Пол</th>
+                    <th>Любимые ЯП</th>
+                    <th>Биография</th>
+                </thead>
+                <tbody>
+                    {{ range $i, $appl := .Applications }}
+                    <tr>
+                        <td>{{ $appl.Login }}</td>
+                        <td>{{ $appl.FullName }}</td>
+                        <td>{{ $appl.Phone }}</td>
+                        <td>{{ $appl.Email }}</td>
+                        <td>{{ $appl.Birthdate }}</td>
+                        <td>{{ $appl.Gender }}</td>
+                        <td>{{ $appl.PLString }}</td>
+                        <td>{{ $appl.Bio }}</td>
+                    </tr>
+                    {{ end }}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="7">ВСЕГО: </td>
+                        <td>{{ .Statistics.Quantity }}</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+        <h2>Статистика</h2>
+
+        <div class="statistics">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Название ЯП</th>
+                        <th>Выбрало (чел.)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{ range $pl, $count := .Statistics.ProgLang }}
+                    <tr>
+                        <td>{{ $pl }}</td>
+                        <td>{{ $count }}</td>
+                    </tr>
+                    {{ end}}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td>Самый популярный:</td>
+                        <td>{{ .Statistics.MostWanted }}</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
