@@ -81,6 +81,7 @@ button {
     border-radius: 4px;
     cursor: pointer;
     font-size: 14px;
+    flex-grow: 1;
 }
 
 button:hover {
@@ -128,4 +129,35 @@ input.error__input, select.error__input, textarea.error__input {
 
 a {
     color: #fff;
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
+}
+
+a.remove-btn {
+    box-sizing: border-box;
+    padding: 6px;
+    display: block;
+    width: 36px;
+    height: 36px;
+    background-color: #ff5555;
+    border-radius: 4px;
+}
+
+a.remove-btn:hover {
+    background-color: #df4848;
+}
+
+.user-administration {
+    margin-bottom: 20px;
+}
+
+.statistics > table {
+    margin: 0 auto;
+}
+
+.statistics td {
+    text-align: center;
 }
